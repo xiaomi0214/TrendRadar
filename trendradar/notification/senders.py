@@ -166,11 +166,24 @@ def send_to_feishu(
         )
 
         # 飞书 webhook 只显示 content.text，所有信息都整合到 text 中
+        # payload = {
+        #    "msg_type": "text",
+        #    "content": {
+        #        "text": batch_content,
+        #    },
+        # }
         payload = {
-            "msg_type": "text",
-            "content": {
-                "text": batch_content,
-            },
+            "msg_type": "interactive",
+            "card": {
+                "type": "template",
+                "data": {
+                "template_id": "AAqvI46MkQ9gG",
+                "template_version_name": "1.0.1",
+                "template_variable": {
+                    "data": batch_content
+                }
+                }
+            }
         }
 
         try:
